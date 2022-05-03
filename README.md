@@ -38,5 +38,5 @@ A aplicação é uma lista de tarefas simples, onde o usuário poderá ter um qu
 
 ### Protótipo de baixo nível:
 
-![image](https://user-images.githubusercontent.com/68572594/166394639-16df8b8d-d693-4f6f-80de-80eb46888dfd.png)
+![image](https://user-images.githubusercontent.com/68572594/166394788-497c7302-12c1-494d-a1cc-8ecbb924cec9.png)
 
