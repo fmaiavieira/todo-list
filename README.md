@@ -14,9 +14,13 @@ Projeto dedicado a pratica da stack Angular e seus principais recursos.
    - Angular material
  - Tailwind CSS
 
-##### Database:
- - Firebase
 
+##### Backend:
+- NodeJS
+  -Express 
+
+##### Database:
+ - Prisma
 
 ### O App:
 
