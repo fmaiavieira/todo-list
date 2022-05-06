@@ -20,7 +20,7 @@ Projeto dedicado a pratica da stack Angular e seus principais recursos.
   -Express 
 
 ##### Database:
- - Prisma
+ - Prisma/PostgreSQL
 
 ### O App:
 
