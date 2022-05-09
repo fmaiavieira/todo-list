@@ -31,7 +31,7 @@ A aplicação é uma lista de tarefas simples, onde o usuário poderá ter um qu
  - [ ] Quadro para listagem de cards de tarefas, com título, descrição, data para conclusão e status.
  - [ ] Poder criar, remover e editar uma tarefa.
  - [ ] Utilizar animações para carregamentos, e ações do usuário.
- - [ ] Login e armazenamento de dados utilizando o Firebase.
+ - [ ] Login e armazenamento de dados utilizando o pstgresql.
 
 ### Objetivos futuros:
 
