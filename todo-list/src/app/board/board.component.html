@@ -1,8 +1,5 @@
-<section class="w-full h-full flex justify-center items-center text-white">
-  <div class="w-72 h-[70%] bg-[#4f44a5] rounded-3xl">
-    <div class="p-6 h-[15%] flex justify-between items-center"><span>TO DO</span> <button>+</button></div>
-    <div class="w-full h-[85%] bg-white rounded-3xl"></div>
-  </div>
+<section class="w-full h-full flex justify-evenly items-center text-white">
+  <app-task-list [boardList]="board.todo"></app-task-list>
+  <app-task-list [boardList]="board.doing"></app-task-list>
+  <app-task-list [boardList]="board.done"></app-task-list>
 </section>
-
-

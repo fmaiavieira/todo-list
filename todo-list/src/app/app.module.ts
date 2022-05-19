@@ -5,16 +5,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BoardComponent } from './board/board.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
+import { HttpClientModule } from '@angular/common/http';
+import { TaskItemComponent } from './board/task-list/task-item/task-item.component';
+import { TaskListComponent } from './board/task-list/task-list.component';
+import { TaskItemFormComponent } from './board/task-list/task-item-form/task-item-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BoardComponent
+    BoardComponent,
+    TaskItemComponent,
+    TaskListComponent,
+    TaskItemFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

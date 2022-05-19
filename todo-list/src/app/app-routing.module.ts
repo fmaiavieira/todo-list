@@ -3,12 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { BoardComponent } from './board/board.component';
 
 const routes: Routes = [
-  {path: '', component: BoardComponent},
-  {path: 'my-board', component: BoardComponent}
+  { path: '', component: BoardComponent },
+  { path: 'my-board', component: BoardComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

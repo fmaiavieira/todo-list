@@ -1,0 +1,23 @@
+<div class="w-80 h-[70%] bg-[#725DD6] rounded-3xl">
+  <div class="p-6 h-[15%] flex justify-between items-center">
+    <span>{{ boardList.title }}</span>
+    <button
+      *ngIf="boardList.title === 'TO DO'"
+      mat-button
+      aria-label="botão de adicionar"
+      [disabled]="isAddingTask"
+      (click)="addTask()"
+    >
+      <mat-icon>add_circle</mat-icon>
+    </button>
+  </div>
+  <div class="w-full h-[85%] bg-white rounded-3xl overflow-auto">
+    <app-task-item-form
+      *ngIf="isAddingTask"
+      (closeForm)="isAddingTask = false"
+    ></app-task-item-form>
+    <div *ngFor="let task of boardList.items">
+      <app-task-item [task]="task"></app-task-item>
+    </div>
+  </div>
+</div>
