@@ -1,4 +1,5 @@
 export interface BoardTask {
+  id: string;
   name: string;
   exipire_date: string;
   description: string;

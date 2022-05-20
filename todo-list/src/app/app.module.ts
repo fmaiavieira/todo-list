@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TaskItemComponent } from './board/task-list/task-item/task-item.component';
 import { TaskListComponent } from './board/task-list/task-list.component';
 import { TaskItemFormComponent } from './board/task-list/task-item-form/task-item-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { TaskItemFormComponent } from './board/task-list/task-item-form/task-ite
     BoardComponent,
     TaskItemComponent,
     TaskListComponent,
-    TaskItemFormComponent
+    TaskItemFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,8 +26,10 @@ import { TaskItemFormComponent } from './board/task-list/task-item-form/task-ite
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

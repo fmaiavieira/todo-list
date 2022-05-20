@@ -1,25 +1,29 @@
 <section class="text-[#313131] w-full flex justify-center p-4">
-  <div
-    class="bg-[#F0F2F6] w-full rounded-md p-2 flex justify-between items-center"
-  >
-    <mat-form-field appearance="outline">
-      <mat-label>Nome da tarefa</mat-label>
-      <input matInput />
-    </mat-form-field>
-    <div>
-      <button
-        mat-button
-        aria-label="Example icon button with a vertical three dot icon"
-        (click)="closeForm.emit()"
-      >
-        <mat-icon>cancel</mat-icon>
-      </button>
-      <button
-        mat-button
-        aria-label="Example icon button with a vertical three dot icon"
-      >
-        <mat-icon>check</mat-icon>
-      </button>
+  <form class="w-full" [formGroup]="taskForm">
+    <div
+      class="bg-[#F0F2F6] w-full w rounded-md p-2 flex justify-between items-center"
+    >
+      <mat-form-field class="w-36 mt-4" appearance="outline">
+        <mat-label>Nome da tarefa</mat-label>
+        <input matInput placeholder="ex: Criar post" formControlName="name" />
+      </mat-form-field>
+      <div>
+        <button
+          mat-button
+          aria-label="Example icon button with a vertical three dot icon"
+          (click)="closeForm.emit()"
+        >
+          <mat-icon>cancel</mat-icon>
+        </button>
+        <button
+          mat-button
+          aria-label="Example icon button with a vertical three dot icon"
+          (click)="createTask()"
+          [disabled]="!taskForm.valid"
+        >
+          <mat-icon>check</mat-icon>
+        </button>
+      </div>
     </div>
-  </div>
+  </form>
 </section>

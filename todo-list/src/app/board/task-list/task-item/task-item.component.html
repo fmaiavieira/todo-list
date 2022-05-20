@@ -7,12 +7,14 @@
       <button
         mat-button
         aria-label="Example icon button with a vertical three dot icon"
+        disabled
       >
         <mat-icon>edit</mat-icon>
       </button>
       <button
         mat-button
         aria-label="Example icon button with a vertical three dot icon"
+        (click)="remove.emit(task.id)"
       >
         <mat-icon>delete</mat-icon>
       </button>

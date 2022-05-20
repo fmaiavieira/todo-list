@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { BoardService } from 'src/app/services/board.service';
 import { BoardList } from '../board';
 
 @Component({
@@ -11,11 +12,15 @@ export class TaskListComponent implements OnInit {
 
   isAddingTask = false;
 
-  constructor() {}
+  constructor(private boardService: BoardService) {}
 
   ngOnInit(): void {}
 
-  addTask() {
+  onAddTask() {
     this.isAddingTask = true;
+  }
+
+  onRemoveTask(id: string) {
+    this.boardService.removeTask(id);
   }
 }

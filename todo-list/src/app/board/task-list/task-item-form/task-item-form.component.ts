@@ -1,4 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { BoardService } from 'src/app/services/board.service';
+import * as uuid from 'uuid';
 
 @Component({
   selector: 'app-task-item-form',
@@ -7,9 +10,19 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class TaskItemFormComponent implements OnInit {
   @Output() closeForm = new EventEmitter();
-  constructor() {}
+  constructor(private boardService: BoardService, private fb: FormBuilder) {}
+
+  taskForm = this.fb.group({
+    id: [uuid.v4()],
+    name: ['', Validators.required],
+    exipire_date: [''],
+    description: [''],
+  });
 
   ngOnInit(): void {}
 
-  createTask() {}
+  createTask() {
+    this.boardService.addTask(this.taskForm.value);
+    this.closeForm.emit();
+  }
 }
