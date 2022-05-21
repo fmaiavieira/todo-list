@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { BoardResponse, BoardTask } from '../board/board';
+import { BoardResponse, BoardTask, Status } from '../board/board';
 import * as FAKEDATA from '../board/fake-data.json';
 
 @Injectable({
@@ -23,12 +23,13 @@ export class BoardService {
     this._board.next(value);
   }
 
-  addTask(task: BoardTask) {
-    this.board.board.todo.items.unshift(task);
+  addTask(task: BoardTask, status: Status) {
+    this.board.board[status].items.unshift(task);
   }
 
-  removeTask(id: string) {
-    this.board.board.todo.items = this.board.board.todo.items.filter(
+  removeTask(id: string, status: Status) {
+    console.log(id, status);
+    this.board.board[status].items = this.board.board.todo.items.filter(
       (tasks) => tasks.id !== id
     );
   }

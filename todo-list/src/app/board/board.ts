@@ -18,3 +18,17 @@ export interface Board {
 export interface BoardResponse {
   board: Board;
 }
+
+export enum Status {
+  TODO = 'todo',
+  DOING = 'doing',
+  DONE = 'done',
+}
+
+export const STATUS: {
+  [key: string]: Status;
+} = {
+  'TO DO': Status.TODO,
+  DOING: Status.DOING,
+  DONE: Status.DONE,
+};

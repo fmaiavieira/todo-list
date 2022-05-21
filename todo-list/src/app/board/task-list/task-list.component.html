@@ -11,9 +11,17 @@
       <mat-icon>add_circle</mat-icon>
     </button>
   </div>
-  <div class="w-full h-[85%] bg-white rounded-3xl overflow-auto">
+  <div
+    cdkDropList
+    id="{{ boardList.title }}"
+    [cdkDropListData]="boardList.items"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)"
+    class="w-full h-[85%] bg-white rounded-3xl overflow-auto"
+  >
     <app-task-item-form
       *ngIf="isAddingTask"
+      [boardStatus]="STATUS[boardList.title]"
       (closeForm)="isAddingTask = false"
     ></app-task-item-form>
     <div *ngFor="let task of boardList.items">

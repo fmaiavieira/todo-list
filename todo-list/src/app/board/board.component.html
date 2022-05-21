@@ -1,4 +1,7 @@
-<section class="w-full h-full flex justify-evenly items-center text-white">
+<section
+  cdkDropListGroup
+  class="w-full h-full flex justify-evenly items-center text-white"
+>
   <app-task-list [boardList]="board.todo"></app-task-list>
   <app-task-list [boardList]="board.doing"></app-task-list>
   <app-task-list [boardList]="board.done"></app-task-list>
