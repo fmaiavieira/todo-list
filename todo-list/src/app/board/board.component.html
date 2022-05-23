@@ -2,7 +2,26 @@
   cdkDropListGroup
   class="w-full h-full flex justify-evenly items-center text-white"
 >
-  <app-task-list [boardList]="board.todo"></app-task-list>
-  <app-task-list [boardList]="board.doing"></app-task-list>
-  <app-task-list [boardList]="board.done"></app-task-list>
+  <ng-container *ngIf="!this.isFetching"></ng-container>
+  <app-task-list
+    (onRemoveTask)="removeTask($event)"
+    (onAddTask)="addTask($event)"
+    (onMoveTask)="moveTask($event)"
+    [boardTasks]="boardTasks.todo"
+    [title]="'TO DO'"
+  ></app-task-list>
+  <app-task-list
+    (onRemoveTask)="removeTask($event)"
+    (onAddTask)="addTask($event)"
+    (onMoveTask)="moveTask($event)"
+    [boardTasks]="boardTasks.doing"
+    [title]="'DOING'"
+  ></app-task-list>
+  <app-task-list
+    (onRemoveTask)="removeTask($event)"
+    (onAddTask)="addTask($event)"
+    (onMoveTask)="moveTask($event)"
+    [boardTasks]="boardTasks.done"
+    [title]="'DONE'"
+  ></app-task-list>
 </section>

@@ -1,30 +1,29 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { BoardService } from 'src/app/services/board.service';
 import * as uuid from 'uuid';
-import { Status } from '../../board';
+import { BoardTask } from '../../board';
 
 @Component({
   selector: 'app-task-item-form',
   templateUrl: './task-item-form.component.html',
   styleUrls: ['./task-item-form.component.scss'],
 })
-export class TaskItemFormComponent implements OnInit {
-  @Input() boardStatus!: Status;
+export class TaskItemFormComponent {
   @Output() closeForm = new EventEmitter();
-  constructor(private boardService: BoardService, private fb: FormBuilder) {}
+  @Output() onAddTask = new EventEmitter<BoardTask>();
+
+  constructor(private fb: FormBuilder) {}
 
   taskForm = this.fb.group({
     id: [uuid.v4()],
+    status: ['todo'],
     name: ['', Validators.required],
     exipire_date: [''],
     description: [''],
   });
 
-  ngOnInit(): void {}
-
-  createTask() {
-    this.boardService.addTask(this.taskForm.value, this.boardStatus);
+  addTask() {
+    this.onAddTask.emit(this.taskForm.value);
     this.closeForm.emit();
   }
 }

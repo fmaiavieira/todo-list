@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BoardComponent } from './board/board.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
-import { HttpClientModule } from '@angular/common/http';
 import { TaskItemComponent } from './board/task-list/task-item/task-item.component';
 import { TaskListComponent } from './board/task-list/task-list.component';
 import { TaskItemFormComponent } from './board/task-list/task-item-form/task-item-form.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DatabaseService } from './database/database.service';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientInMemoryWebApiModule.forRoot(DatabaseService, {
+      dataEncapsulation: false,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { BoardTask } from '../../board';
 
 @Component({
@@ -6,12 +6,7 @@ import { BoardTask } from '../../board';
   templateUrl: './task-item.component.html',
   styleUrls: ['./task-item.component.scss'],
 })
-export class TaskItemComponent implements OnInit {
+export class TaskItemComponent {
   @Input() task!: BoardTask;
-
   @Output() remove = new EventEmitter<string>();
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

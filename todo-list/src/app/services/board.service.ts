@@ -1,36 +1,46 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { BoardResponse, BoardTask, Status } from '../board/board';
-import * as FAKEDATA from '../board/fake-data.json';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
+import { BoardTask } from '../board/board';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BoardService {
-  private _board = new BehaviorSubject<BoardResponse>(FAKEDATA);
+  private boardUrl = 'api/board/';
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  getBoard(): Observable<BoardResponse> {
-    return this._board;
+  getBoard(): Observable<BoardTask[]> {
+    return this.http.get<BoardTask[]>(this.boardUrl).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(error);
+      })
+    );
   }
 
-  get board(): BoardResponse {
-    return this._board.getValue();
+  createTask(task: BoardTask): Observable<BoardTask> {
+    return this.http.post<BoardTask>(this.boardUrl, task).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(error);
+      })
+    );
   }
 
-  set board(value: BoardResponse) {
-    this._board.next(value);
+  removeTask(id: string): Observable<any> {
+    return this.http.delete(this.boardUrl + id).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(error);
+      })
+    );
   }
 
-  addTask(task: BoardTask, status: Status) {
-    this.board.board[status].items.unshift(task);
-  }
-
-  removeTask(id: string, status: Status) {
-    console.log(id, status);
-    this.board.board[status].items = this.board.board.todo.items.filter(
-      (tasks) => tasks.id !== id
+  editTask(task: BoardTask): Observable<any> {
+    return this.http.put(this.boardUrl + task.id, task).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(error);
+      })
     );
   }
 }

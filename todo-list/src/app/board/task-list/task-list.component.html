@@ -1,33 +1,33 @@
 <div class="w-80 h-[70%] bg-[#725DD6] rounded-3xl">
   <div class="p-6 h-[15%] flex justify-between items-center">
-    <span>{{ boardList.title }}</span>
+    <span>{{ title }}</span>
     <button
-      *ngIf="boardList.title === 'TO DO'"
+      *ngIf="title === 'TO DO'"
       mat-button
       aria-label="botão de adicionar"
       [disabled]="isAddingTask"
-      (click)="onAddTask()"
+      (click)="isAddingTask = true"
     >
       <mat-icon>add_circle</mat-icon>
     </button>
   </div>
   <div
     cdkDropList
-    id="{{ boardList.title }}"
-    [cdkDropListData]="boardList.items"
+    id="{{ title }}"
+    [cdkDropListData]="boardList"
     class="example-list"
     (cdkDropListDropped)="drop($event)"
     class="w-full h-[85%] bg-white rounded-3xl overflow-auto"
   >
     <app-task-item-form
       *ngIf="isAddingTask"
-      [boardStatus]="STATUS[boardList.title]"
       (closeForm)="isAddingTask = false"
+      (onAddTask)="onAddTask.emit($event)"
     ></app-task-item-form>
-    <div *ngFor="let task of boardList.items">
+    <div *ngFor="let task of boardTasks">
       <app-task-item
         [task]="task"
-        (remove)="onRemoveTask($event)"
+        (remove)="onRemoveTask.emit($event)"
       ></app-task-item>
     </div>
   </div>
