@@ -8,5 +8,5 @@ import { BoardTask } from '../../board';
 })
 export class TaskItemComponent {
   @Input() task!: BoardTask;
-  @Output() remove = new EventEmitter<string>();
+  @Output() remove = new EventEmitter<BoardTask>();
 }

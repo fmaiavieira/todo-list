@@ -24,4 +24,7 @@ export const STATUS: {
   'TO DO': Status.TODO,
   DOING: Status.DOING,
   DONE: Status.DONE,
+  todo: Status.TODO,
+  doing: Status.DOING,
+  done: Status.DONE,
 };

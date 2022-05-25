@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BoardService } from '../services/board.service';
-import { Board, BoardTask } from './board';
+import { Board, BoardTask, Status, STATUS } from './board';
 
 @Component({
   selector: 'app-board',
@@ -25,10 +25,12 @@ export class BoardComponent implements OnInit {
         const doing = response.filter((item) => item.status === 'doing');
         const done = response.filter((item) => item.status === 'done');
 
-        this.boardTasks = { todo, doing, done };
-        this.isFetching = false;
+        const boardTasks = { todo, doing, done };
 
-        console.log(this.boardTasks);
+        if (JSON.stringify(this.boardTasks) !== JSON.stringify(boardTasks)) {
+          this.boardTasks = boardTasks;
+        }
+        this.isFetching = false;
       },
       error: () => {
         new Error('Não foi possivel buscar os dados do quadro');
@@ -37,14 +39,16 @@ export class BoardComponent implements OnInit {
   }
 
   addTask(task: BoardTask) {
-    this.boardService.createTask(task).subscribe({
-      next: () => {
-        this.fetchBoard();
-      },
-    });
+    this.boardTasks[STATUS[task.status]].push(task),
+      this.boardService.createTask(task).subscribe({
+        next: () => {
+          this.fetchBoard();
+        },
+      });
   }
 
   moveTask(task: BoardTask) {
+    this.boardTasks[STATUS[task.status]].push(task);
     this.boardService.editTask(task).subscribe({
       next: () => {
         this.fetchBoard();
@@ -52,8 +56,14 @@ export class BoardComponent implements OnInit {
     });
   }
 
-  removeTask(id: string) {
-    this.boardService.removeTask(id).subscribe({
+  removeTask(task: BoardTask) {
+    this.boardTasks[STATUS[task.status]] = this.boardTasks[
+      STATUS[task.status]
+    ].filter((value) => {
+      return value !== task;
+    });
+
+    this.boardService.removeTask(task.id).subscribe({
       next: () => {
         this.fetchBoard();
       },

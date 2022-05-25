@@ -1,5 +1,6 @@
 <section
   cdkDrag
+  (cdkDragEnded)="remove.emit(task)"
   [cdkDragData]="task"
   class="text-[#313131] w-full flex justify-center p-4"
 >
@@ -18,7 +19,7 @@
       <button
         mat-button
         aria-label="Example icon button with a vertical three dot icon"
-        (click)="remove.emit(task.id)"
+        (click)="remove.emit(task)"
       >
         <mat-icon>delete</mat-icon>
       </button>

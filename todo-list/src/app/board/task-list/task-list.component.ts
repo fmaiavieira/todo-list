@@ -12,7 +12,7 @@ export class TaskListComponent {
   @Input() boardTasks!: BoardTask[];
   @Input() title!: string;
 
-  @Output() onRemoveTask = new EventEmitter<string>();
+  @Output() onRemoveTask = new EventEmitter<BoardTask>();
   @Output() onAddTask = new EventEmitter<BoardTask>();
   @Output() onMoveTask = new EventEmitter<BoardTask>();
 
