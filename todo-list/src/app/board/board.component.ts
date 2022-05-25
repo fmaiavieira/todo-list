@@ -21,9 +21,15 @@ export class BoardComponent implements OnInit {
   fetchBoard() {
     this.boardService.getBoard().subscribe({
       next: (response: BoardTask[]) => {
-        const todo = response.filter((item) => item.status === 'todo');
-        const doing = response.filter((item) => item.status === 'doing');
-        const done = response.filter((item) => item.status === 'done');
+        const todo = response
+          .filter((item) => item.status === 'todo')
+          .sort((a, b) => this.orderByPosition(a.position, b.position));
+        const doing = response
+          .filter((item) => item.status === 'doing')
+          .sort((a, b) => this.orderByPosition(a.position, b.position));
+        const done = response
+          .filter((item) => item.status === 'done')
+          .sort((a, b) => this.orderByPosition(a.position, b.position));
 
         const boardTasks = { todo, doing, done };
 
@@ -39,20 +45,24 @@ export class BoardComponent implements OnInit {
   }
 
   addTask(task: BoardTask) {
-    this.boardTasks[STATUS[task.status]].push(task),
-      this.boardService.createTask(task).subscribe({
+    this.boardTasks[STATUS[task.status]].push(task);
+    task.position = this.boardTasks[STATUS[task.status]].indexOf(task);
+    this.boardService.createTask(task).subscribe({
+      next: () => {
+        this.fetchBoard();
+      },
+    });
+  }
+
+  moveTask({ task, index }: { task: BoardTask; index: number }) {
+    this.boardTasks[STATUS[task.status]].splice(index, 0, task);
+    this.boardTasks[STATUS[task.status]].forEach((el) => {
+      el.position = this.boardTasks[STATUS[task.status]].indexOf(el);
+      this.boardService.editTask(el).subscribe({
         next: () => {
           this.fetchBoard();
         },
       });
-  }
-
-  moveTask(task: BoardTask) {
-    this.boardTasks[STATUS[task.status]].push(task);
-    this.boardService.editTask(task).subscribe({
-      next: () => {
-        this.fetchBoard();
-      },
     });
   }
 
@@ -68,5 +78,11 @@ export class BoardComponent implements OnInit {
         this.fetchBoard();
       },
     });
+  }
+
+  private orderByPosition(a: number, b: number) {
+    if (a < b) return -1;
+    if (a > b) return 1;
+    return 0;
   }
 }

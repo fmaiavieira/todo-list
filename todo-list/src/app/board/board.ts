@@ -1,5 +1,8 @@
+import { AbstractControl, FormGroup } from '@angular/forms';
+
 export interface BoardTask {
   id: string;
+  position: number;
   status: string;
   name: string;
   exipire_date: string;
@@ -27,4 +30,8 @@ export const STATUS: {
   todo: Status.TODO,
   doing: Status.DOING,
   done: Status.DONE,
+};
+
+export type TaskFormGroup = FormGroup & {
+  value: BoardTask;
 };

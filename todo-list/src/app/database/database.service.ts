@@ -9,6 +9,7 @@ export class DatabaseService implements InMemoryDbService {
     const board = [
       {
         id: '3',
+        position: 0,
         status: 'todo',
         name: 'tarefa 3',
         exipire_date: '01/01/2023',
@@ -17,6 +18,7 @@ export class DatabaseService implements InMemoryDbService {
       },
       {
         id: '2',
+        position: 0,
         status: 'doing',
         name: 'tarefa 2',
         exipire_date: '01/01/2023',
@@ -25,6 +27,7 @@ export class DatabaseService implements InMemoryDbService {
       },
       {
         id: '1',
+        position: 0,
         status: 'done',
         name: 'tarefa 1',
         exipire_date: '01/01/2023',

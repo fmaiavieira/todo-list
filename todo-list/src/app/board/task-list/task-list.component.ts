@@ -14,7 +14,7 @@ export class TaskListComponent {
 
   @Output() onRemoveTask = new EventEmitter<BoardTask>();
   @Output() onAddTask = new EventEmitter<BoardTask>();
-  @Output() onMoveTask = new EventEmitter<BoardTask>();
+  @Output() onMoveTask = new EventEmitter<{ task: BoardTask; index: number }>();
 
   boardList: BoardTask[] = [];
   isAddingTask = false;
@@ -23,6 +23,8 @@ export class TaskListComponent {
   drop(event: CdkDragDrop<BoardTask[]>) {
     const task = event.item.data;
     task.status = STATUS[event.container.id];
-    this.onMoveTask.emit(task);
+    task.position = event.currentIndex;
+    console.log(event);
+    this.onMoveTask.emit({ task, index: event.currentIndex });
   }
 }

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import * as uuid from 'uuid';
-import { BoardTask } from '../../board';
+import { BoardTask, TaskFormGroup } from '../../board';
 
 @Component({
   selector: 'app-task-item-form',
@@ -16,11 +16,12 @@ export class TaskItemFormComponent {
 
   taskForm = this.fb.group({
     id: [uuid.v4()],
+    position: [0],
     status: ['todo'],
     name: ['', Validators.required],
     exipire_date: [''],
     description: [''],
-  });
+  }) as TaskFormGroup;
 
   addTask() {
     this.onAddTask.emit(this.taskForm.value);
