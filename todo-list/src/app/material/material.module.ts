@@ -4,6 +4,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   imports: [
@@ -12,6 +14,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatFormFieldModule,
     MatInputModule,
     DragDropModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   exports: [
     MatButtonModule,
@@ -19,6 +23,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatFormFieldModule,
     MatInputModule,
     DragDropModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
 })
 export class MaterialModule {}

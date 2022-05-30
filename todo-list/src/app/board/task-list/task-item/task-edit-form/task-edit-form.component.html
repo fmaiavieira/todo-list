@@ -1,0 +1,46 @@
+<section class="text-[#313131] w-full flex justify-center">
+  <form class="w-full bg-[#F0F2F6]" [formGroup]="taskForm">
+    <div class="w-full w p-2 flex flex-col justify-between items-center">
+      <mat-form-field class="w-full" appearance="outline">
+        <mat-label>Nome da tarefa</mat-label>
+        <input matInput placeholder="ex: Criar post" formControlName="name" />
+      </mat-form-field>
+      <mat-form-field class="w-full" appearance="outline">
+        <mat-label>Escolha uma data</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="expire_date"
+        />
+        <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="w-full" appearance="outline">
+        <mat-label>Descrição</mat-label>
+        <textarea
+          matInput
+          placeholder="ex: criar post na plataforma com as imagens no link"
+          formControlName="description"
+        ></textarea>
+      </mat-form-field>
+      <div class="w-full flex justify-end items-center">
+        <button
+          mat-icon-button
+          aria-label="Example icon button with a vertical three dot icon"
+          (click)="closeForm.emit()"
+        >
+          <mat-icon>cancel</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          aria-label="Example icon button with a vertical three dot icon"
+          (click)="saveTask()"
+          [disabled]="!taskForm.valid"
+        >
+          <mat-icon>check</mat-icon>
+        </button>
+      </div>
+    </div>
+  </form>
+</section>

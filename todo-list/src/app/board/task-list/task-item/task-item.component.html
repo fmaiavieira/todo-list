@@ -2,27 +2,37 @@
   cdkDrag
   (cdkDragEnded)="remove.emit(task)"
   [cdkDragData]="task"
-  class="text-[#313131] w-full flex justify-center p-4"
+  class="text-[#313131] w-full flex flex-col items-center justify-center p-4"
 >
   <div
-    class="bg-[#F0F2F6] w-full rounded-md p-2 flex justify-between items-center"
+    class="bg-[#F0F2F6] w-full rounded-md p-2 flex flex-col justify-between items-center"
   >
-    <span>{{ task.name }}</span>
-    <div>
-      <button
-        mat-button
-        aria-label="Example icon button with a vertical three dot icon"
-        disabled
-      >
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button
-        mat-button
-        aria-label="Example icon button with a vertical three dot icon"
-        (click)="remove.emit(task)"
-      >
-        <mat-icon>delete</mat-icon>
-      </button>
+    <div class="w-full flex justify-between items-center" cdkDragHandle>
+      <span class="pd-2">{{ task.name }}</span>
+      <div>
+        <button
+          mat-icon-button
+          aria-label="Example icon button with a vertical three dot icon"
+          (click)="isEditing = true"
+          [disabled]="isEditing"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          aria-label="Example icon button with a vertical three dot icon"
+          (click)="remove.emit(task)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
     </div>
+
+    <app-task-edit-form
+      *ngIf="isEditing"
+      (closeForm)="isEditing = false"
+      (onEditTask)="onEditTask.emit($event)"
+      [task]="task"
+    ></app-task-edit-form>
   </div>
 </section>

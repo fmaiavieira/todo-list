@@ -6,6 +6,7 @@
   <app-task-list
     (onRemoveTask)="removeTask($event)"
     (onAddTask)="addTask($event)"
+    (onEditTask)="editTask($event)"
     (onMoveTask)="moveTask($event)"
     [boardTasks]="boardTasks.todo"
     [title]="'TO DO'"
@@ -13,6 +14,7 @@
   <app-task-list
     (onRemoveTask)="removeTask($event)"
     (onAddTask)="addTask($event)"
+    (onEditTask)="editTask($event)"
     (onMoveTask)="moveTask($event)"
     [boardTasks]="boardTasks.doing"
     [title]="'DOING'"
@@ -20,6 +22,7 @@
   <app-task-list
     (onRemoveTask)="removeTask($event)"
     (onAddTask)="addTask($event)"
+    (onEditTask)="editTask($event)"
     (onMoveTask)="moveTask($event)"
     [boardTasks]="boardTasks.done"
     [title]="'DONE'"

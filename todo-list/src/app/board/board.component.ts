@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BoardService } from '../services/board.service';
-import { Board, BoardTask, Status, STATUS } from './board';
+import { Board, BoardTask, STATUS } from './board';
 
 @Component({
   selector: 'app-board',
@@ -74,6 +74,18 @@ export class BoardComponent implements OnInit {
     });
 
     this.boardService.removeTask(task.id).subscribe({
+      next: () => {
+        this.fetchBoard();
+      },
+    });
+  }
+
+  editTask(task: BoardTask) {
+    const oldTaskIndex = this.boardTasks[STATUS[task.status]].findIndex(
+      (item) => item.id === task.id
+    );
+    this.boardTasks[STATUS[task.status]][oldTaskIndex] = task;
+    this.boardService.editTask(task).subscribe({
       next: () => {
         this.fetchBoard();
       },

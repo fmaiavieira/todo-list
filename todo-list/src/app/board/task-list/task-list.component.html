@@ -5,8 +5,7 @@
       *ngIf="title === 'TO DO'"
       mat-button
       aria-label="botão de adicionar"
-      [disabled]="isAddingTask"
-      (click)="isAddingTask = true"
+      (click)="addNewTask()"
     >
       <mat-icon>add_circle</mat-icon>
     </button>
@@ -22,13 +21,9 @@
     <div *ngFor="let task of boardTasks">
       <app-task-item
         [task]="task"
+        (onEditTask)="onEditTask.emit($event)"
         (remove)="onRemoveTask.emit($event)"
       ></app-task-item>
     </div>
-    <app-task-item-form
-      *ngIf="isAddingTask"
-      (closeForm)="isAddingTask = false"
-      (onAddTask)="onAddTask.emit($event)"
-    ></app-task-item-form>
   </div>
 </div>

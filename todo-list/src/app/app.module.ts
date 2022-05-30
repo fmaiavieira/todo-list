@@ -11,7 +11,7 @@ import { BoardComponent } from './board/board.component';
 import { MaterialModule } from './material/material.module';
 import { TaskItemComponent } from './board/task-list/task-item/task-item.component';
 import { TaskListComponent } from './board/task-list/task-list.component';
-import { TaskItemFormComponent } from './board/task-list/task-item-form/task-item-form.component';
+import { TaskEditFormComponent } from './board/task-list/task-item/task-edit-form/task-edit-form.component';
 import { DatabaseService } from './database/database.service';
 
 @NgModule({
@@ -20,7 +20,7 @@ import { DatabaseService } from './database/database.service';
     BoardComponent,
     TaskItemComponent,
     TaskListComponent,
-    TaskItemFormComponent,
+    TaskEditFormComponent,
   ],
   imports: [
     BrowserModule,

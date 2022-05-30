@@ -9,4 +9,7 @@ import { BoardTask } from '../../board';
 export class TaskItemComponent {
   @Input() task!: BoardTask;
   @Output() remove = new EventEmitter<BoardTask>();
+  @Output() onEditTask = new EventEmitter<BoardTask>();
+
+  isEditing = false;
 }

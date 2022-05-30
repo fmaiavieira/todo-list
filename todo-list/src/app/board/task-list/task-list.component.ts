@@ -2,6 +2,7 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BoardTask } from '../board';
 import { STATUS } from '../board';
+import * as uuid from 'uuid';
 
 @Component({
   selector: 'app-task-list',
@@ -14,6 +15,7 @@ export class TaskListComponent {
 
   @Output() onRemoveTask = new EventEmitter<BoardTask>();
   @Output() onAddTask = new EventEmitter<BoardTask>();
+  @Output() onEditTask = new EventEmitter<BoardTask>();
   @Output() onMoveTask = new EventEmitter<{ task: BoardTask; index: number }>();
 
   boardList: BoardTask[] = [];
@@ -26,5 +28,17 @@ export class TaskListComponent {
     task.position = event.currentIndex;
     console.log(event);
     this.onMoveTask.emit({ task, index: event.currentIndex });
+  }
+
+  addNewTask() {
+    const newTask = {
+      id: uuid.v4(),
+      position: 0,
+      status: 'todo',
+      name: 'Nova tarefa',
+      expire_date: new Date(),
+      description: '',
+    };
+    this.onAddTask.emit(newTask);
   }
 }
