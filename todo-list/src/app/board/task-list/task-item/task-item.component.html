@@ -29,10 +29,10 @@
     </div>
 
     <app-task-edit-form
-      *ngIf="isEditing"
       (closeForm)="isEditing = false"
       (onEditTask)="onEditTask.emit($event)"
       [task]="task"
+      [openClose]="isEditing"
     ></app-task-edit-form>
   </div>
 </section>

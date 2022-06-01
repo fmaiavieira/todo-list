@@ -1,5 +1,8 @@
-<section class="text-[#313131] w-full flex justify-center">
-  <form class="w-full bg-[#F0F2F6]" [formGroup]="taskForm">
+<section
+  class="text-[#313131] w-full flex justify-center overflow-hidden"
+  [@openClose]="openClose ? 'opened' : 'closed'"
+>
+  <form class="w-full bg-[#F0F2F6] mt-5" [formGroup]="taskForm">
     <div class="w-full w p-2 flex flex-col justify-between items-center">
       <mat-form-field class="w-full" appearance="outline">
         <mat-label>Nome da tarefa</mat-label>
