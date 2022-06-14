@@ -49,7 +49,7 @@ export class BoardComponent implements OnInit {
     task.position = this.boardTasks[STATUS[task.status]].indexOf(task);
     this.boardService.createTask(task).subscribe({
       next: () => {
-        this.fetchBoard();
+        // this.fetchBoard();
       },
     });
   }
@@ -60,7 +60,7 @@ export class BoardComponent implements OnInit {
       el.position = this.boardTasks[STATUS[task.status]].indexOf(el);
       this.boardService.editTask(el).subscribe({
         next: () => {
-          this.fetchBoard();
+          // this.fetchBoard();
         },
       });
     });
@@ -75,7 +75,7 @@ export class BoardComponent implements OnInit {
 
     this.boardService.removeTask(task.id).subscribe({
       next: () => {
-        this.fetchBoard();
+        // this.fetchBoard();
       },
     });
   }
@@ -87,7 +87,7 @@ export class BoardComponent implements OnInit {
     this.boardTasks[STATUS[task.status]][oldTaskIndex] = task;
     this.boardService.editTask(task).subscribe({
       next: () => {
-        this.fetchBoard();
+        // this.fetchBoard();
       },
     });
   }
