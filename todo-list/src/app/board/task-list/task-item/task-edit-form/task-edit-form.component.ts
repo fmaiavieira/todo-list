@@ -52,7 +52,6 @@ export class TaskEditFormComponent implements OnInit {
 
   ngOnInit() {
     this.taskForm.patchValue(this.task);
-    console.log(this.taskForm.value);
   }
 
   saveTask() {

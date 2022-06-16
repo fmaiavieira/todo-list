@@ -13,7 +13,7 @@ routes.get("/boardtasks", async (req, res) => {
   return res.status(201).send(boardtasks);
 });
 
-routes.post("boardtask/create", async (req, res) => {
+routes.post("/boardtask/create", async (req, res) => {
   const { id, position, status, name, expire_date, description } = req.body;
 
   await boardTaskUseCase.create({
@@ -28,7 +28,7 @@ routes.post("boardtask/create", async (req, res) => {
   return res.status(201).send();
 });
 
-routes.post("boardtask/edit", async (req, res) => {
+routes.put("/boardtask/edit", async (req, res) => {
   const { id, position, status, name, expire_date, description } = req.body;
 
   await boardTaskUseCase.update({
@@ -43,8 +43,8 @@ routes.post("boardtask/edit", async (req, res) => {
   return res.status(201).send();
 });
 
-routes.post("boardtask/delete", async (req, res) => {
-  const { id } = req.body;
+routes.delete("/boardtask/delete/:id", async (req, res) => {
+  const id = req.params.id;
 
   await boardTaskUseCase.delete({
     id,

@@ -54,10 +54,26 @@ export class BoardComponent implements OnInit {
     });
   }
 
-  moveTask({ task, index }: { task: BoardTask; index: number }) {
+  moveTask({
+    task,
+    index,
+    previousStatus,
+  }: {
+    task: BoardTask;
+    index: number;
+    previousStatus: string;
+  }) {
+    console.log('move');
+    this.boardTasks[STATUS[previousStatus]] = this.boardTasks[
+      STATUS[previousStatus]
+    ].filter((value) => {
+      return value.id !== task.id;
+    });
+
     this.boardTasks[STATUS[task.status]].splice(index, 0, task);
     this.boardTasks[STATUS[task.status]].forEach((el) => {
       el.position = this.boardTasks[STATUS[task.status]].indexOf(el);
+      console.log(el);
       this.boardService.editTask(el).subscribe({
         next: () => {
           // this.fetchBoard();

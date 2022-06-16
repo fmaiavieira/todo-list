@@ -8,12 +8,12 @@ import { BoardTask } from '../board/board';
   providedIn: 'root',
 })
 export class BoardService {
-  private boardUrl = 'api/board/';
+  private boardUrl = 'http://192.168.0.15:3333/';
 
   constructor(private http: HttpClient) {}
 
   getBoard(): Observable<BoardTask[]> {
-    return this.http.get<BoardTask[]>(this.boardUrl).pipe(
+    return this.http.get<BoardTask[]>(this.boardUrl + 'boardtasks').pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(error);
       })
@@ -21,15 +21,17 @@ export class BoardService {
   }
 
   createTask(task: BoardTask): Observable<BoardTask> {
-    return this.http.post<BoardTask>(this.boardUrl, task).pipe(
-      catchError((error: HttpErrorResponse) => {
-        return throwError(error);
-      })
-    );
+    return this.http
+      .post<BoardTask>(this.boardUrl + 'boardtask/create', task)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(error);
+        })
+      );
   }
 
   removeTask(id: string): Observable<any> {
-    return this.http.delete(this.boardUrl + id).pipe(
+    return this.http.delete(this.boardUrl + 'boardtask/delete/' + id).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(error);
       })
@@ -37,7 +39,7 @@ export class BoardService {
   }
 
   editTask(task: BoardTask): Observable<any> {
-    return this.http.put(this.boardUrl + task.id, task).pipe(
+    return this.http.put(this.boardUrl + 'boardtask/edit', task).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(error);
       })

@@ -16,7 +16,11 @@ export class TaskListComponent {
   @Output() onRemoveTask = new EventEmitter<BoardTask>();
   @Output() onAddTask = new EventEmitter<BoardTask>();
   @Output() onEditTask = new EventEmitter<BoardTask>();
-  @Output() onMoveTask = new EventEmitter<{ task: BoardTask; index: number }>();
+  @Output() onMoveTask = new EventEmitter<{
+    task: BoardTask;
+    index: number;
+    previousStatus: string;
+  }>();
 
   boardList: BoardTask[] = [];
   isAddingTask = false;
@@ -26,8 +30,11 @@ export class TaskListComponent {
     const task = event.item.data;
     task.status = STATUS[event.container.id];
     task.position = event.currentIndex;
-    console.log(event);
-    this.onMoveTask.emit({ task, index: event.currentIndex });
+    this.onMoveTask.emit({
+      task,
+      index: event.currentIndex,
+      previousStatus: event.previousContainer.id,
+    });
   }
 
   addNewTask() {

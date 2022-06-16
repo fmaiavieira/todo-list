@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,7 +11,6 @@ import { MaterialModule } from './material/material.module';
 import { TaskItemComponent } from './board/task-list/task-item/task-item.component';
 import { TaskListComponent } from './board/task-list/task-list.component';
 import { TaskEditFormComponent } from './board/task-list/task-item/task-edit-form/task-edit-form.component';
-import { DatabaseService } from './database/database.service';
 
 @NgModule({
   declarations: [
@@ -30,9 +28,6 @@ import { DatabaseService } from './database/database.service';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientInMemoryWebApiModule.forRoot(DatabaseService, {
-      dataEncapsulation: false,
-    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
