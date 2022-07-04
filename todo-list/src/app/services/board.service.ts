@@ -8,7 +8,7 @@ import { BoardTask } from '../board/board';
   providedIn: 'root',
 })
 export class BoardService {
-  private boardUrl = 'http://192.168.0.15:3333/';
+  private boardUrl = 'http://localhost:3333/';
 
   constructor(private http: HttpClient) {}
 
@@ -21,10 +21,23 @@ export class BoardService {
   }
 
   createTask(task: BoardTask): Observable<BoardTask> {
+    console.log(
+      this.http
+        .post<BoardTask>(this.boardUrl + 'boardtask/create', task)
+        .pipe(
+          catchError((error: HttpErrorResponse) => {
+            console.log(error);
+            return throwError(error);
+          })
+        )
+        .subscribe({ next: (res) => console.log(res) })
+    );
+
     return this.http
       .post<BoardTask>(this.boardUrl + 'boardtask/create', task)
       .pipe(
         catchError((error: HttpErrorResponse) => {
+          console.log(error);
           return throwError(error);
         })
       );

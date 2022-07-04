@@ -12,34 +12,15 @@ export class BoardTaskUseCase {
   }
 
   async create(request: BoardTaskCreateData) {
-    const { id, position, status, name, expire_date, description } = request;
-    console.log(id, position, status, name, expire_date, description);
-    await this.prismaBoardTaskRepository.create({
-      id,
-      position,
-      status,
-      name,
-      expire_date,
-      description,
-    });
+    await this.prismaBoardTaskRepository.create(request);
   }
 
   async update(request: BoardTaskCreateData) {
-    const { id, position, status, name, expire_date, description } = request;
-    console.log(id, position, status, name, expire_date, description);
-    await this.prismaBoardTaskRepository.update({
-      id,
-      position,
-      status,
-      name,
-      expire_date,
-      description,
-    });
+    await this.prismaBoardTaskRepository.update(request);
   }
 
   async delete(request: BoardTaskDeleteData) {
     const { id } = request;
-    console.log(id);
     await this.prismaBoardTaskRepository.delete({
       id,
     });

@@ -14,31 +14,13 @@ routes.get("/boardtasks", async (req, res) => {
 });
 
 routes.post("/boardtask/create", async (req, res) => {
-  const { id, position, status, name, expire_date, description } = req.body;
-
-  await boardTaskUseCase.create({
-    id,
-    position,
-    status,
-    name,
-    expire_date,
-    description,
-  });
+  await boardTaskUseCase.create(req.body);
 
   return res.status(201).send();
 });
 
 routes.put("/boardtask/edit", async (req, res) => {
-  const { id, position, status, name, expire_date, description } = req.body;
-
-  await boardTaskUseCase.update({
-    id,
-    position,
-    status,
-    name,
-    expire_date,
-    description,
-  });
+  await boardTaskUseCase.update(req.body);
 
   return res.status(201).send();
 });

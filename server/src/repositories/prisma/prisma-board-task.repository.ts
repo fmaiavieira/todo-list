@@ -10,46 +10,22 @@ export class PrismaBoardTaskRepository implements BoardTaskRepository {
     return await prisma.boardTask.findMany();
   }
 
-  async create({
-    id,
-    position,
-    status,
-    name,
-    expire_date,
-    description,
-  }: BoardTaskCreateData) {
+  async getById(id: string) {
+    return await prisma.boardTask.findUnique({ where: { id } });
+  }
+
+  async create(data: BoardTaskCreateData) {
     await prisma.boardTask.create({
-      data: {
-        id,
-        position,
-        status,
-        name,
-        expire_date,
-        description,
-      },
+      data,
     });
   }
 
-  async update({
-    id,
-    position,
-    status,
-    name,
-    expire_date,
-    description,
-  }: BoardTaskCreateData) {
+  async update(data: BoardTaskCreateData) {
     await prisma.boardTask.update({
       where: {
-        id,
+        id: data.id,
       },
-      data: {
-        id,
-        position,
-        status,
-        name,
-        expire_date,
-        description,
-      },
+      data,
     });
   }
 
